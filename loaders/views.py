@@ -11,11 +11,17 @@ def upload_files(request):
     if request.method == "POST":
         form = UploadFilesForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES["file"])
+            matches = request.FILES["matches"]
+            players = request.FILES["players"]
+            stats = request.FILES["stats"]            
+            handle_uploaded_file(matches, players, stats) 
             messages.success(request, "Files was successfully uploaded!")
+            return redirect("loaders:upload_ok")
         else:
             messages.error(request, "There are errors in form!")
-        return render(request, "loaders/upload.html", {"form": form})
     else:
         form = UploadFilesForm()
     return render(request, "loaders/upload.html", {"form": form})
+
+def upload_ok(request):
+    return render(request, "loaders/upload_ok.html")

@@ -9,7 +9,7 @@
     <title>Upload Files</title>
 </head>
 <body>
-    <form id="" action="" method="post" novalidate>
+    <form enctype="multipart/form-data" id="" action="" method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <input class="button" type="submit" value="Upload files">
