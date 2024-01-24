@@ -2,7 +2,7 @@ from django.db import models
 from players.models import Player
 
 class Match(models.Model):
-    match_id = models.CharField(max_length=20)
+    match_atp = models.CharField(max_length=20)
     tournament = models.CharField(max_length=200)
     date = models.DateField()
     round = models.CharField(max_length=200)
@@ -18,4 +18,4 @@ class Match(models.Model):
         ]
     
     def __str__(self):
-        return self.tournament + " " + str(self.date) + " " + self.round + " " + str(self.winner) + " " + str(self.loser)
+        return self.tournament + " " + str(self.date) + " " + self.round + " "

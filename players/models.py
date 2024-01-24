@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Player(models.Model):
-    player_id = models.CharField(max_length=20)
+    player_atp = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     hand = models.CharField(max_length=1)
     country = models.CharField(max_length=3)

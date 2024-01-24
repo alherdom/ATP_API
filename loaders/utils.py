@@ -15,8 +15,8 @@ def handle_uploaded_file(matches, players, stats):
     for row in reader_players:
         if row["birthdate"] == "":
             row["birthdate"] = "1900-01-01"
-        new_player = Player.objects.create(
-            player_id=row["player_id"],
+            Player.objects.create(
+            player_atp=row["player_id"],
             name=row["name"],
             hand=row["hand"],
             country=row["country"],
@@ -24,10 +24,21 @@ def handle_uploaded_file(matches, players, stats):
         )
 
     for row in reader_matches:
-        new_match = Match.objects.create(
-            match_id=row["match_id"],
+            Match.objects.create(
+            match_atp=row["match_id"],
             tournament=row["tournament"],
             date=datetime.strptime(row["date"], "%Y-%m-%d"),
             round=row["round"],
             duration=row["duration"],
         )
+
+    for row in reader_stats:
+        player = row["player_id"]
+        match = Match.objects.get(match_atp=row["match_id"])
+        if row["winner"] == "TRUE":
+            winner = Player.objects.get(player_atp=player)
+            match.winner = winner
+        else:
+            loser = Player.objects.get(player_atp=player)
+            match.loser = loser
+        match.save()
