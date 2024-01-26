@@ -9,15 +9,15 @@ def handle_uploaded_players(players):
     reader_players = DictReader(decoded_players.splitlines())
 
     for row in reader_players:
-        if row["birthdate"] == "":
-            row["birthdate"] = "1900-01-01"
-            Player.objects.create(
-                player_atp=row["player_id"],
-                name=row["name"],
-                hand=row["hand"],
-                country=row["country"],
-                birthdate=datetime.strptime(row["birthdate"], "%Y-%m-%d"),
-            )
+        # if row["birthdate"] == "":
+        #     row["birthdate"] = "1900-01-01"
+        Player.objects.create(
+            player_atp=row["player_id"],
+            name=row["name"],
+            hand=row["hand"],
+            country=row["country"],
+            birthdate=datetime.strptime(row["birthdate"], "%Y-%m-%d"),
+        )
 
 
 def handle_uploaded_matches(matches):
