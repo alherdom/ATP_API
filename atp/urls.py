@@ -22,5 +22,6 @@ from loaders.views import home
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("loaders/", include("loaders.urls")),
+    path("api/", include("matches.api.urls", namespace="api")),
     path("", home, name="root"),
 ]

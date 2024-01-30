@@ -1,6 +1,20 @@
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework import generics
 from matches.models import Match
-from matches.api.serializers import MatchSerializer
+from players.models import Player
+from matches.api.serializers import PlayerSerializer, MatchSerializer
+
+
+class PlayerListView(generics.ListAPIView):
+    queryset = Match.objects.all()
+    serializer_class = PlayerSerializer
+
+
+class PlayerDetailView(generics.RetrieveAPIView):
+    queryset = Match.objects.all()
+    serializer_class = PlayerSerializer
 
 
 class MatchListView(generics.ListAPIView):
@@ -13,17 +27,17 @@ class MatchDetailView(generics.RetrieveAPIView):
     serializer_class = MatchSerializer
 
 
-class MatchWinnerView(generics.ListAPIView):
-    serializer_class = MatchSerializer
+class MatchWinnerView(APIView):
+    def get(self, request, pk):
+        match = Match.objects.get(pk=pk)
+        winner = match.winner
+        serializer = PlayerSerializer(winner)
+        return Response(serializer.data)
 
-    def get_queryset(self):
-        winner = self.kwargs["winner"]
-        return Match.objects.filter(winner=winner)
 
-
-class MatchLoserView(generics.ListAPIView):
-    serializer_class = MatchSerializer
-
-    def get_queryset(self):
-        loser = self.kwargs["loser"]
-        return Match.objects.filter(loser=loser)
+class MatchLoserView(APIView):
+    def get(self, request, pk):
+        match = Match.objects.get(pk=pk)
+        loser = match.loser
+        serializer = PlayerSerializer(loser)
+        return Response(serializer.data)
