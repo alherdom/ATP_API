@@ -6,12 +6,7 @@ from players.models import Player
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = [
-            "name",
-            "hand",
-            "country",
-            "birthdate",
-        ]
+        fields = ["name", "hand", "country", "birthdate"]
 
 
 class MatchSerializer(serializers.ModelSerializer):

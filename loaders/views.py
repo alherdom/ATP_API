@@ -1,12 +1,12 @@
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.admin.views.decorators import staff_member_required
 from .forms import UploadFilesForm
 from .utils import (
     handle_uploaded_players,
     handle_uploaded_matches,
     handle_uploaded_stats,
 )
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.admin.views.decorators import staff_member_required
 
 
 def home(request):
