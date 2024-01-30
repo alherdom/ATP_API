@@ -8,12 +8,12 @@ from matches.api.serializers import PlayerSerializer, MatchSerializer
 
 
 class PlayerListView(generics.ListAPIView):
-    queryset = Match.objects.all()
+    queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
 
 class PlayerDetailView(generics.RetrieveAPIView):
-    queryset = Match.objects.all()
+    queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
 
@@ -28,6 +28,8 @@ class MatchDetailView(generics.RetrieveAPIView):
 
 
 class MatchWinnerView(APIView):
+    queryset = Match.objects.all()
+
     def get(self, request, pk):
         match = Match.objects.get(pk=pk)
         winner = match.winner
@@ -36,6 +38,8 @@ class MatchWinnerView(APIView):
 
 
 class MatchLoserView(APIView):
+    queryset = Match.objects.all()
+
     def get(self, request, pk):
         match = Match.objects.get(pk=pk)
         loser = match.loser

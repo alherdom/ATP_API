@@ -7,7 +7,6 @@ class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
         fields = [
-            "id",
             "name",
             "hand",
             "country",
@@ -21,4 +20,4 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ["id", "tournament", "date", "round", "duration", "winner", "loser"]
+        fields = ["tournament", "date", "round", "duration", "winner", "loser"]
