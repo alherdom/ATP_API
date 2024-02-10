@@ -23,7 +23,7 @@ This repository contains an API created with Django and Django REST Framework th
     pip install -r requirements.txt
     ```
 
-3. Configure your environment variables. You can use the `.env.example` file as a reference to create your own `.env` file.
+3. Set up your environment variables. You must create an `.env` file with the variables.
 
 4. Run the database migrations:
 
