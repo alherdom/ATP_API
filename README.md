@@ -1,6 +1,8 @@
-# Django ATP Players Matches API
+# ATP Players Matches API
 
 This repository contains an API created with Django and Django REST Framework that provides data about ATP tennis players and their matches.
+
+![Tennis Players](img/player_list.png)
 
 ## Requirements
 
