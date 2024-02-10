@@ -6,7 +6,7 @@ from players.models import Player
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ["name", "hand", "country", "birthdate"]
+        fields = ["id","name", "hand", "country", "birthdate"]
 
 
 class MatchSerializer(serializers.ModelSerializer):
@@ -15,4 +15,4 @@ class MatchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Match
-        fields = ["tournament", "date", "round", "duration", "winner", "loser"]
+        fields = ["id","tournament", "date", "round", "duration", "winner", "loser"]
